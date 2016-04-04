@@ -1,0 +1,23 @@
+{
+	"manifest_version": 2,
+	"name": "Phonebook Dialer",
+	"version": "1.0.1.2",
+	"description": "Show, search and dial telephone system extensions.",
+	"options_ui": {
+		"chrome_style": true,
+		"page": "options.html"
+	},
+	"icons": {
+		"16": "phonebook16.png",
+		"48": "phonebook48.png",
+		"128": "phonebook128.png"
+	},
+	"browser_action":{
+		"default_icon": "phonebook16.png",
+		"default_popup": "phonebook.html",
+		"default_title":"Phonebook Dialer"
+	},
+	"author": "Mat Phillips",
+	"permissions": ["storage"],
+	"content_security_policy": "script-src 'self' https://www.google.com;object-src 'self'"
+}

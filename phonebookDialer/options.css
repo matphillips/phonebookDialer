@@ -1,0 +1,15 @@
+/*
+Phonebook Dialer.
+(c) Mat Phillips 2016
+*/
+
+body {font-size: 17px;}
+fieldset {background: #ffffe9;}
+label {display: block; padding-bottom: 10px;}
+h1 {padding-bottom: 6px; margin: 8px 0 10px 0;}
+img {vertical-align: middle;}
+input {width: 4em; font-size: 17px; padding: 4px 0 4px 10px; color: blue; font-weight: bold;}
+input#myUrl {font-size: 10px; width: 100%;}
+button {margin: 15px 0 0 20px; font-weight: bold; padding: 6px; text-align: center;}
+small {padding: 0 20px 30px 20px; display: block; color: #777;}
+small#copyright {font-size: 13px; color: #bbb; margin: 10px 0 0 10px; padding: 0;}

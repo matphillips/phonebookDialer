@@ -1,0 +1,18 @@
+/*
+Phonebook Dialer.
+(c) Mat Phillips 2016
+*/
+
+body {margin: 0; color: #4A423F; }
+h1 {margin: 0; padding: 0 0 10px 0; font-size: 140%; text-align: center;}
+input {margin: 6px 4px 10px 4px; display: block; padding: 4px 0 4px 7px; color: black; font-weight: bold;}
+input:focus {outline: none; box-shadow: 0 0 5px #6B534C; border: 1px solid #6B534C;}
+#heading {padding: 0 10px 0 10px; margin-bottom: 3px; display: inline-block; color: #6B534C; border-bottom: 1px solid #6B534C; background: #F2F0F0;}
+.phonebookResult {margin: 4px 5px 4px 5px; padding: 0; background: #F2F0F0;}
+.phonebookResult:hover {background: #EDE6E4;}
+.phonebookResult .name {font-weight: bold; display: block; padding: 2px 0 3px 5px;}
+.phonebookResult .numbers {display: block;}
+.phonebookResult .numbers .type {padding-left: 8px; font-size: 80%;}
+.phonebookResult .numbers .number {color: black;}
+.phonebookEntry {cursor: pointer; padding: 2px 0 2px 0;}
+.phonebookEntry:hover  {color: black; text-shadow:1px 0px 0px black; background: #E3D5D1;}
