@@ -32,7 +32,7 @@ $(document).ready(function() {
 			numberList = `${numberList}
 			<div class = "phonebookEntry">
 				<span class = "type">${value["type"]}:</span>
-				<span class = "number dialEntry" data-number="${value['number']}">${value["number"]}</span>
+				<span class = "number" data-number="${value['number']}">${value["number"]}</span>
 			</div>
 			`;
 		});
@@ -80,8 +80,8 @@ $(document).ready(function() {
 			const el = addResult(value.xname, value.xnumbers);
 			$("#phonebookSearchResults").append(el);
 		});
-		$(".dialEntry").off().on("click", function() {
-			const number = $(this).data("number");
+		$(".phonebookEntry").off().on("click", function() {
+			const number = $(this).find($('.number')).data("number");
 			$("#phonebookSearchField").val("");
 			makeCallTo (number);
 		});
