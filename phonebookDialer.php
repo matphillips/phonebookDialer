@@ -3,8 +3,6 @@
 // (c) Mat Phillips 2016
 
 // ----- configure values:
-$amiUser = "username";
-$amiPassword = "password";
 $startExtension = 200; // lowest extension number
 $endExtension = 399;   // highest extension number
 $startGroup = 500;     // lowest group number
@@ -106,27 +104,27 @@ if ($mode == "list") {
 }
 
 if ($mode == "dial") {
+	global $astman;
 	$destination = array_key_exists('destination', $_GET) ? $_GET['destination'] : "";
+	
+	$strContext = "from-internal";
+	$strWaitTime = "30";
+	$strPriority = "1";
+	$strMaxRetry = "1";
+	$strAsync = 'no';
+	
 	if (strlen($destination) > 2 && strlen($xtn) > 2) {
-		$timeout = 5;
-		$asterisk_ip = "127.0.0.1";
-		$socket = fsockopen($asterisk_ip,"5038", $errno, $errstr, $timeout);
-		fputs($socket, "Action: Login\r\n");
-		fputs($socket, "UserName: $amiUser\r\n");
-		fputs($socket, "Secret: $amiPassword\r\n\r\n");
-		$wrets=fgets($socket,128);
-		echo $wrets;
-		fputs($socket, "Action: Originate\r\n" );
-		fputs($socket, "Channel: Local/$xtn@from-internal\r\n" );
-		fputs($socket, "Exten: $destination\r\n" );
-		fputs($socket, "Context: from-internal\r\n" );
-		fputs($socket, "Priority: 1\r\n" );
-		fputs($socket, "Async: yes\r\n" );
-		fputs($socket, "WaitTime: 5\r\n" );
-		fputs($socket, "Callerid: $destination\r\n\r\n" );
-		$wrets=fgets($socket,128);
-		echo $wrets;
-		sleep(2);
+		$destination = filter_var($destination, FILTER_SANITIZE_NUMBER_INT);
+		$destination = preg_replace("/[^0-9,.]/", "", $destination);
+
+		$dial = array();
+		$dial['Channel'] = $strChannel;
+		$dial['Context'] = $strContext;
+		$dial['Exten'] = $destination;
+		$dial['Priority'] = $strPriority;
+		$dial['Async'] = $strAsync;
+		$dial['Timeout'] = $strWaitTime;
+		$dial['CallerID'] = '"Click to dial" <'.$destination.'>';
 	}
 }
 ?>
