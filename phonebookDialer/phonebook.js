@@ -6,6 +6,8 @@ $(document).ready(function() {
 	var myExtension;
 	var phonebookData = [];
 	
+	$("#phonebookSearchField").focus();
+	
 	chrome.storage.sync.get({
 		'myExtension': ''
 		,'myUrl': ''
@@ -53,8 +55,7 @@ $(document).ready(function() {
 		function(data) {})
 		.success(function(data)  {
 			phonebookData = []; // clear the array before repopulating it
-			$.each(data, function(key, value) {
-				console.log (1);			
+			$.each(data, function(key, value) {		
 				phonebookData[phonebookData.length] = {xname: value["name"], xnumbers: value["numbers"]};
 			});	
 			updateDisplay()
