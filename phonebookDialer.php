@@ -106,25 +106,27 @@ if ($mode == "list") {
 if ($mode == "dial") {
 	global $astman;
 	$destination = array_key_exists('destination', $_GET) ? $_GET['destination'] : "";
-	
 	$strContext = "from-internal";
-	$strWaitTime = "30";
+	$strChannel = "local/$xtn@$strContext";
+	$strWaitTime = "5000";
 	$strPriority = "1";
 	$strMaxRetry = "1";
 	$strAsync = 'no';
-	
+
 	if (strlen($destination) > 2 && strlen($xtn) > 2) {
 		$destination = filter_var($destination, FILTER_SANITIZE_NUMBER_INT);
 		$destination = preg_replace("/[^0-9,.]/", "", $destination);
-
-		$dial = array();
-		$dial['Channel'] = $strChannel;
-		$dial['Context'] = $strContext;
-		$dial['Exten'] = $destination;
-		$dial['Priority'] = $strPriority;
-		$dial['Async'] = $strAsync;
-		$dial['Timeout'] = $strWaitTime;
-		$dial['CallerID'] = '"Click to dial" <'.$destination.'>';
+		$dial = array(
+			'Channel' => $strChannel
+			,'Context' => $strContext
+			,'Exten' => $destination
+			,'Priority' => $strPriority
+			,'Async' => $strAsync
+			,'Timeout' => $strWaitTime
+			,'CallerID' => '"phonebookDialer" <'.$destination.'>'
+		);
+		var_dump ($astman->Originate($dial));
 	}
 }
+
 ?>
