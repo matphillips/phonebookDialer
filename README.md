@@ -26,7 +26,7 @@ Edit the configuration options in the phonebookDialer.php file to suit your envi
 
 ## dialing script
 
-The script connects using the AGI, so a user account for it will be needed in Asterisk, and the script needs to be configured with the correct username and password in the to variables at the start of the script.
+The script connects using the AGI connection provided by FreePBX, to use this without FreePBX will require a change to the dial code.
 
 The same script is responsible for reading the list of extension numbers, it is designed for FreePBX so it leverages that platform for the database connection.
 
