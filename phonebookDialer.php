@@ -11,7 +11,7 @@ $endGroup = 520;       // highest group number
 
 $xtn = array_key_exists('xtn', $_GET) ? $_GET['xtn'] : NULL;
 $mode = array_key_exists('mode', $_GET) ? $_GET['mode'] : "list";
-header ("content-type: text/xml");
+header ("content-type: application/json");
 header('Access-Control-Allow-Origin: *');
 if (!@include_once(getenv('FREEPBX_CONF') ? getenv('FREEPBX_CONF') : '/etc/freepbx.conf')) {
 	include_once('/etc/asterisk/freepbx.conf');
