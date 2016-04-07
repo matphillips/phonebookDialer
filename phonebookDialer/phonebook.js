@@ -67,11 +67,19 @@ $(document).ready(function() {
 	
 	function filterBySearch(obj) {
 		const searchString = $("#phonebookSearchField").val();
-		if ( ('xname' in obj && obj.xname.toLowerCase().indexOf(searchString.toLowerCase()) > -1) || ('xnumber' in obj && obj.xnumber.indexOf(searchString) > -1) ) {
-			return true;
-		} else {
-			return false;
+		var matchFound = false;
+		if ('xname' in obj && obj.xname.toLowerCase().indexOf(searchString.toLowerCase()) > -1) { // name match
+			matchFound = true;
 		}
+		if ('xnumbers' in obj) {
+			$.each(obj.xnumbers, function( key, value ) {
+				if (value.number.indexOf(searchString) > -1) { // number match
+					matchFound = true;
+					return;
+				}
+			});
+		}
+		return matchFound;
 	}
 	
 	function updateDisplay() {
