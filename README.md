@@ -8,6 +8,9 @@ Will find:
 * Additional numbers assigned to those extension users, as added in User Manager (FreePBX)
 * Ring Groups
 * 'Personal Directory'. Each user creates a contacts group in UCP Contact Manager, with their extension number for the group name, and those entries will be added too.
+* 'reverse-search' works too, search part of a number, all matches are shown.
+
+**New:** Key in a number instead of searching for a name and hit enter/return to place a call to that number.
 
 ## Installation
 

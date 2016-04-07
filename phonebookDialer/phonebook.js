@@ -23,9 +23,14 @@ $(document).ready(function() {
 	
 	function launch() {
 		phonebookData = fetchPhonebookData();
-		$("#phonebookSearchField").on("keyup", function () {
-			updateDisplay();
-		})
+		$("#phonebookSearchField").on("keyup", function (e) {
+			const number = $("#phonebookSearchField").val();
+			if (e.which == 13 && number.length > 2 && $.isNumeric(number)) {
+				makeCallTo (number);		
+			} else {
+				updateDisplay();
+			}	
+		});
 	}
 	
 	function addResult(name, numbers) {
@@ -71,7 +76,7 @@ $(document).ready(function() {
 		if ('xname' in obj && obj.xname.toLowerCase().indexOf(searchString.toLowerCase()) > -1) { // name match
 			matchFound = true;
 		}
-		if ('xnumbers' in obj) {
+		if ('xnumbers' in obj && !matchFound) {
 			$.each(obj.xnumbers, function( key, value ) {
 				if (value.number.indexOf(searchString) > -1) { // number match
 					matchFound = true;
@@ -91,12 +96,12 @@ $(document).ready(function() {
 		});
 		$(".phonebookEntry").off().on("click", function() {
 			const number = $(this).find($('.number')).data("number");
-			$("#phonebookSearchField").val("");
 			makeCallTo (number);
 		});
 	}
 	
 	function makeCallTo (number) {
+		$("#phonebookSearchField").val("");
 		$("#phonebookSearchResults").empty().append(`<div class = "phonebookResult">Calling: ${number} <div>`);	
 		if (myExtension && number) {
 			$.getJSON(url, {mode: "dial", destination: number, xtn: myExtension},
