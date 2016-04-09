@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Phonebook Dialer",
-	"version": "1.0.1.5",
+	"version": "1.0.1.6",
 	"description": "Show, search and dial telephone system extensions.",
 	"options_ui": {
 		"chrome_style": true,
@@ -13,7 +13,10 @@
 		"128": "phonebook128.png"
 	},
 	"browser_action":{
-		"default_icon": "phonebook16.png",
+		"default_icon": {
+			"19": "phonebook19.png",
+			"38": "phonebook38.png"
+		},
 		"default_popup": "phonebook.html",
 		"default_title":"Phonebook Dialer"
 	},
