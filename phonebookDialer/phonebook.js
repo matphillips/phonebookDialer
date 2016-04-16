@@ -2,19 +2,15 @@
 // (c) Mat Phillips 2016
 
 $(document).ready(function() {
-	var url;
+	const dialerURL = 'http://pbx.domain.local/phonebookDialer.php';
 	var myExtension;
 	var phonebookData = [];
 	
 	$("#phonebookSearchField").focus();
 	
-	chrome.storage.sync.get({
-		'myExtension': ''
-		,'myUrl': ''
-	},function(items) {
+	chrome.storage.sync.get({'myExtension': ''}, function(items) {
 		myExtension = items.myExtension;
-		url = items.myUrl;
-		if (myExtension.length < 3 || url.length < 5) {
+		if (myExtension.length < 3) {
 			chrome.runtime.openOptionsPage();
 		} else {
 			launch()
@@ -56,7 +52,7 @@ $(document).ready(function() {
 	}
 
 	function fetchPhonebookData(sampledata) {		
-		$.getJSON(url, {mode: "list", xtn: myExtension},
+		$.getJSON(dialerURL, {mode: "list", xtn: myExtension},
 		function(data) {})
 		.success(function(data)  {
 			phonebookData = []; // clear the array before repopulating it
@@ -104,7 +100,7 @@ $(document).ready(function() {
 		$("#phonebookSearchField").val("");
 		$("#phonebookSearchResults").empty().append(`<div class = "phonebookResult">Calling: ${number} <div>`);	
 		if (myExtension && number) {
-			$.getJSON(url, {mode: "dial", destination: number, xtn: myExtension},
+			$.getJSON(dialerURL, {mode: "dial", destination: number, xtn: myExtension},
 			function(data) {})
 			.success(function(data)  {
 				console.log (data);

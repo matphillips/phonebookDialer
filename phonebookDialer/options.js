@@ -3,11 +3,8 @@
 
 function save_options() {
 	var myExtension = $('#myExtension').val();
-	var myUrl = $('#myUrl').val();
-	chrome.storage.sync.set({
-		'myExtension': myExtension
-		,'myUrl': myUrl
-	}
+	
+	chrome.storage.sync.set({'myExtension': myExtension}
 	,function() {
 		$('#phonebookOptionsStatus').html("Options saved");
  		setTimeout(function() {
@@ -18,13 +15,9 @@ function save_options() {
 }
 
 function restore_options() {
-	chrome.storage.sync.get({
-		'myExtension': ''
-		,'myUrl': 'http://pbx.example.local/phonebookDialer.php'
-	}
+	chrome.storage.sync.get({'myExtension': ''}
 	,function(items) {
 		$('#myExtension').val(items.myExtension);
-		$('#myUrl').val(items.myUrl);
 	});
 }
 
