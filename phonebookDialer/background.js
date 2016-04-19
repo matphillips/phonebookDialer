@@ -1,5 +1,6 @@
 // highlight a number on any page and right-click to issue dial command
 var id = chrome.contextMenus.create({"title": "Dial this number", "contexts":["selection"],"onclick": genericOnClick});
+const dialerURL = 'http://pbx.domain.local/phonebookDialer.php';
 
 function genericOnClick(info, tab) {
 	const webdialNumber = info.selectionText.replace(/\D/g,'') 
@@ -7,16 +8,12 @@ function genericOnClick(info, tab) {
 }
 
 function makeCallTo (number) {	
-	chrome.storage.sync.get({
-		'myExtension': ''
-		,'myUrl': ''
-	},function(items) {
+	chrome.storage.sync.get({'myExtension': ''}, function(items) {
 		myExtension = items.myExtension;
-		url = items.myUrl;
-		if (myExtension.length < 3 || url.length < 5) {
+		if (myExtension.length < 3) {
 			chrome.runtime.openOptionsPage();
 		} else {
-			$.getJSON(url, {mode: "dial", destination: number, xtn: myExtension},
+			$.getJSON(dialerURL, {mode: "dial", destination: number, xtn: myExtension},
 			function(data) {})
 			.success(function(data)  {
 				console.log (data);
@@ -28,5 +25,4 @@ function makeCallTo (number) {
 	});
 }
 
-console.log ("enable web click");
 // ---------------------

@@ -26,6 +26,8 @@ The extension will ask for this location and your extension number on first use.
 ~~The dialing script location is editable in the options interface, the default value is held in *options.js* line 23. Set this to the correct value before use to make things easy.~~
 The server-side dialer is set in line 5 of phonebook.js and is no longer configurable by the user, there's really no point making the user type this in, it's always going to be the same.
 
+Currently, the same location needs to be set in line 3 of background.js because I still need to handle this better.
+
 Edit the configuration options in the phonebookDialer.php file to suit your environment.
 
 
